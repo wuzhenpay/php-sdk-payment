@@ -1,0 +1,27 @@
+{
+    "name": "wuzhenpay/payment",
+    "description": "wuzhenpay支付开放接口PHPSDK",
+    "keywords": [
+        "wuzhenpay", "payment", "wuzhenpay sdk"
+    ],
+    "license": "GPL-3.0+",
+    "homepage": "http://www.wuzhenpay.com/",
+    "type": "library",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "wuzhenpay",
+            "email": "xubing@wuzhenpay.com",
+            "homepage": "https://github.com/wuzhenpay",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wuzhenpay\\Payment\\": "src"
+        }
+    }
+}
