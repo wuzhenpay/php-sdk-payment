@@ -27,12 +27,12 @@ class Md5
      * @param $data
      * @return string
      */
-    public function sign($data)
+    public function sign($data = array())
     {
         $signPars = "";
         ksort($data);
-        foreach($data as $k => $v) {
-            if(isset($v) && "sign" != $k) {
+        foreach ($data as $k => $v) {
+            if (isset($v) && "sign" != $k) {
                 $signPars .= $k . "=" . $v . "&";
             }
         }
@@ -46,7 +46,8 @@ class Md5
      * @param $data
      * @return bool
      */
-    public function verify($sign, $data=array()) {
+    public function verify($sign, $data = array())
+    {
         return ($sign == $this->sign($data));
     }
 }

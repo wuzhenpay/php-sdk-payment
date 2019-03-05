@@ -18,42 +18,20 @@ final class Config {
     const VERSION = '3.0';
 
     /**
-     * 生产环境
+     * api地址
      * @var string
      */
     private $apiHost = "openapi.wuzhenpay.com";
 
-    /**
-     * 测试环境
-     * @var string
-     */
-    private $devApiHost = "127.0.0.1:8083";
-
-    /**
-     * 是否使用https，true为使用
-     * @var bool
-     */
-    private $useHTTPS = true;
-
-    /**
-     * 设置是否使用https
-     * @param bool $bool
-     */
-    public function setUseHTTPS($bool=true) {
-        $this->useHTTPS = $bool;
+    public function setApiHost($apiHost) {
+        $this->apiHost = $apiHost;
     }
 
     /**
      * 获取api地址
      * @return string
      */
-    public function getApiHost($isDev=false) {
-        if ($this->useHTTPS === true) {
-            $scheme = "https://";
-        } else {
-            $scheme = "http://";
-        }
-
-        return $scheme . ($isDev ? $this->devApiHost : $this->apiHost);
+    public function getApiHost() {
+        return $this->apiHost;
     }
 }

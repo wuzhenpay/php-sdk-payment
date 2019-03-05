@@ -22,22 +22,16 @@ use Wuzhenpay\Payment\Trade\Model\Request\TradeRefundQuery;
 use Wuzhenpay\Payment\Trade\Model\Request\TradeReverse;
 use Wuzhenpay\Payment\Trade\Model\Request\TradeSendNotify;
 
-final class WuzhenpayClient
+final class PaymentClient
 {
     private $merchantId;
     private $secret;
 
     /**
-     * 使用HTTPS
-     * @var bool
+     * api地址
+     * @var mixed|null
      */
-    private $useHTTPS = true;
-
-    /**
-     * 使用测试环境
-     * @var bool
-     */
-    private $useDev = false;
+    private $apiHost = null;
 
     private $error;
 
@@ -47,17 +41,10 @@ final class WuzhenpayClient
         $this->secret = $secret;
 
         /**
-         * 设置使用HTTPS
+         * 设置API地址
          */
-        if (isset($config['useHTTPS'])) {
-            $this->useHTTPS = $config['useHTTPS'];
-        }
-
-        /**
-         * 设置使用测试环境
-         */
-        if (isset($config['useDev'])) {
-            $this->useDev = $config['useDev'];
+        if (isset($config['apiHost'])) {
+            $this->apiHost = $config['apiHost'];
         }
     }
 
@@ -254,12 +241,16 @@ final class WuzhenpayClient
      */
     private function postRequest($api, $params = array())
     {
+
         // 设置是否使用https
         $config = new Config();
-        $config->setUseHTTPS($this->useHTTPS);
+        // 设置API地址
+        if (!empty($this->apiHost)) {
+            $config->setApiHost($this->apiHost);
+        }
 
         // 拼接接口地址
-        $api = $config->getApiHost($this->useDev) . $api;
+        $api = $config->getApiHost() . $api;
 
         // 开始请求
         $result = Client::postCurl($params, $api);
@@ -275,6 +266,7 @@ final class WuzhenpayClient
         // 验签
         $auth = new Auth\Md5($this->merchantId, $this->secret);
         $arr = json_decode($data, true);
+
         $bool = $auth->verify($arr['sign'], $arr);
         if (!$bool) {
             $this->error = "Verify signature failure.";

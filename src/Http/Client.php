@@ -73,7 +73,7 @@ final class Client
         $data = curl_exec($ch);
 
         $response = new Response();
-        $response->setCode("200");
+        $response->setCode("400");
 
         //返回结果
         if($data){
