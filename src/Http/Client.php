@@ -20,9 +20,10 @@ final class Client
      * @param array $header
      * @param bool $useCert
      * @param int $second
+     * @param bool $printInfo
      * @return bool|mixed
      */
-    public static function postCurl($params, $api, $header=array(), $useCert = false, $second = 30) {
+    public static function postCurl($params, $api, $header=array(), $useCert = false, $second = 30, $printInfo = false) {
         $ch = curl_init();
 
         //设置超时
@@ -47,7 +48,7 @@ final class Client
         }
 
         //要求结果为字符串且输出到屏幕上
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, $printInfo);
 
         if($useCert == true){
             if(!empty($params['cert'])) {
