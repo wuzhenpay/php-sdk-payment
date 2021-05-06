@@ -87,6 +87,9 @@ final class Client
                     $response->setData(json_encode($json['data']));
                     $response->setCode($json['code']);
                     $response->setMessage($json['message']);
+                } else {
+                    $errorMsg = !empty($json['errorMsg']) ? $json['errorMsg'] : $json['message'];
+                    $response->setMessage($errorMsg);
                 }
             }
         } else {

@@ -12,8 +12,8 @@
 require_once dirname(dirname(__FILE__)) . '/init.php';
 
 $tradeRefund = new \Wuzhenpay\Payment\Trade\Model\Request\TradeRefund();
-$tradeRefund->setOutTradeNo("20190305160351000000"); // 商户订单号
-$tradeRefund->setPayNo("10030000012019030514512128744"); // 平台流水号
+$tradeRefund->setOutTradeNo("202105061744111000001925138145"); // 商户订单号
+$tradeRefund->setPayNo("10000000082021050673851439070"); // 平台流水号
 $tradeRefund->setOutRefundNo("TK" . date("YmdHisu")); // 退款单号
 $tradeRefund->setRefundFee(1); // 退款金额
 $tradeRefund->setReason("退款原因");
