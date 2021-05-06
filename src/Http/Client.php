@@ -36,8 +36,8 @@ final class Client
              unset($params['proxy_port']);
         }
         curl_setopt($ch,CURLOPT_URL, $api);
-        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,TRUE);
-        curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,2);//严格校验
+        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch,CURLOPT_SSL_VERIFYHOST, false);//严格校验
 
         //设置header
         if(!empty($header)) {
@@ -74,7 +74,7 @@ final class Client
 
         $response = new Response();
         $response->setCode("400");
-
+        var_dump($data);
         //返回结果
         if($data){
             curl_close($ch);
@@ -83,9 +83,11 @@ final class Client
                 $response->setMessage("JSON parsing error");
             } else {
                 $json = json_decode($data, true);
-                $response->setData(json_encode($json['data']));
-                $response->setCode($json['code']);
-                $response->setMessage($json['message']);
+                if (!empty($json['data'])) {
+                    $response->setData(json_encode($json['data']));
+                    $response->setCode($json['code']);
+                    $response->setMessage($json['message']);
+                }
             }
         } else {
             $error = curl_errno($ch);

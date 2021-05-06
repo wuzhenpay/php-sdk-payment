@@ -23,6 +23,6 @@ require_once API_ROOT . '/vendor/autoload.php';
 date_default_timezone_set('Asia/Shanghai');
 
 // 初始化支付
-$trade = new PaymentClient("1003000001","4d8614d60f86319432e2a9b27ef363ff", array(
-    "apiHost" => "http://127.0.0.1:8083",
+$trade = new PaymentClient("1000000544", "6903fc28456326f32627d53a4b178137", array(
+//    "apiHost" => "http://127.0.0.1:8083",
 ));

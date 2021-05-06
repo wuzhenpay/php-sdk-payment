@@ -21,7 +21,7 @@ final class Config {
      * api地址
      * @var string
      */
-    private $apiHost = "openapi.wuzhenpay.com";
+    private $apiHost = "http://api.wuzhenpay.com";
 
     public function setApiHost($apiHost) {
         $this->apiHost = $apiHost;

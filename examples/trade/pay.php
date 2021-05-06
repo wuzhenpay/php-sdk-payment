@@ -16,10 +16,11 @@ require_once dirname(dirname(__FILE__)) . '/init.php';
 // 支付请求参数实体类
 $tradePay = new \Wuzhenpay\Payment\Trade\Model\Request\TradePay();
 $tradePay->setTitle("收单");
-$tradePay->setPayType(PayType::$ALIPAY_CODE); // 支付方式请参考支付文档
-$tradePay->setOutTradeNo(date("YmdHisu"));
-$tradePay->setPayMoney("1");
-$tradePay->setAuthCode("284586057604038307");
+$tradePay->setPayType(PayType::$WECHAT_JSAPI); // 支付方式请参考支付文档
+$tradePay->setOutTradeNo(date("YmdHis"));
+$tradePay->setSubAppid("wx56cc37751b80ea79");
+$tradePay->setOpenid("oNhvj5bqH6-L-J2_15SgH_MigcBA");
+$tradePay->setPayMoney("2");
 
 // 开始请求支付
 $response = $trade->pay($tradePay);
@@ -29,4 +30,4 @@ if (!$response) {
 }
 
 // 返回成功信息
-var_dump($response);
+// var_dump($response);
