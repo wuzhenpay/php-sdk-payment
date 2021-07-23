@@ -121,6 +121,7 @@ final class PaymentClient
         $params['outRefundNo'] = $tradeRefund->getOutRefundNo();
         $params['refundFee'] = $tradeRefund->getRefundFee();
         $params['reason'] = $tradeRefund->getReason();
+        $params['notifyUrl'] = $tradeRefund->getNotifyUrl();
 
         // 获取请求参数
         $requestParams = $this->getRequestParams($params);

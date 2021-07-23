@@ -44,6 +44,12 @@ class TradeRefund
      */
     private $reason;
 
+    /**
+     * 退款回调地址
+     * @var
+     */
+    private $notifyUrl;
+
     public function setPayNo($payNo=null) {
         $this->payNo = $payNo;
     }
@@ -77,5 +83,12 @@ class TradeRefund
     }
     public function getReason() {
         return $this->reason;
+    }
+
+    public function setNotifyUrl($notifyUrl) {
+        $this->notifyUrl = $notifyUrl;
+    }
+    public function getNotifyUrl() {
+        return $this->notifyUrl;
     }
 }
